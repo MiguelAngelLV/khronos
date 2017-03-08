@@ -21,7 +21,7 @@ operator fun Date.minus(duration: Duration): Date {
 
 operator fun Date.rangeTo(other: Date) = DateRange(this, other)
 
-fun Date.with(year: Int = -1, month: Int = -1, day: Int = -1, hour: Int = -1, minute: Int = -1, second: Int = -1): Date {
+fun Date.with(year: Int = -1, month: Int = -1, day: Int = -1, hour: Int = -1, minute: Int = -1, second: Int = -1, dayOfWeek : Int = -1): Date {
     calendar.time = this
     if (year > -1) calendar.set(Calendar.YEAR, year)
     if (month > -1) calendar.set(Calendar.MONTH, month - 1)
@@ -29,6 +29,7 @@ fun Date.with(year: Int = -1, month: Int = -1, day: Int = -1, hour: Int = -1, mi
     if (hour > -1) calendar.set(Calendar.HOUR, hour)
     if (minute > -1) calendar.set(Calendar.MINUTE, minute)
     if (second > -1) calendar.set(Calendar.SECOND, second)
+    if (dayOfWeek > -1) calendar.set(Calendar.DAY_OF_WEEK, calendar.firstDayOfWeek)
     return calendar.time
 }
 
@@ -55,6 +56,10 @@ fun Date.endOfMonth(): Date {
     val lastDay = calendar.getActualMaximum(Calendar.DATE)
     return with(day = lastDay, hour = 23, minute = 59, second = 59)
 }
+
+val Date.beginningOfWeek: Date
+    get() = with(weekOfDay = calendar.firstDayOfWeek, hour = 0, minute = 0, second = 0)
+    
 
 val Date.beginningOfDay: Date
     get() = with(hour = 0, minute = 0, second = 0)
