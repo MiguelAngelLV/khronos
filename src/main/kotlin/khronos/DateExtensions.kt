@@ -25,7 +25,7 @@ fun Date.with(year: Int = -1, month: Int = -1, day: Int = -1, hour: Int = -1, mi
     calendar.time = this
     if (year > -1) calendar.set(Calendar.YEAR, year)
     if (month > -1) calendar.set(Calendar.MONTH, month - 1)
-    if (day > -1) calendar.set(Calendar.DATE, day - 1)
+    if (day > -1) calendar.set(Calendar.DATE, day)
     if (hour > -1) calendar.set(Calendar.HOUR, hour)
     if (minute > -1) calendar.set(Calendar.MINUTE, minute)
     if (second > -1) calendar.set(Calendar.SECOND, second)
