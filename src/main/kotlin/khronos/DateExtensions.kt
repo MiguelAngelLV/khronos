@@ -52,9 +52,6 @@ val Date.endOfYear: Date
 val Date.beginningOfMonth: Date
     get() = with(day = 1, hour = 0, minute = 0, second = 0, millisecond = 0)
 
-val Date.endOfMonth: Date
-    get() = endOfMonth()
-
 val Date.endOfMonth: Date 
     get() {
         calendar.time = this
