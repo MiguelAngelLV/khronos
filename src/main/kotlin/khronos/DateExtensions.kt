@@ -55,11 +55,12 @@ val Date.beginningOfMonth: Date
 val Date.endOfMonth: Date
     get() = endOfMonth()
 
-fun Date.endOfMonth(): Date {
-    calendar.time = this
-    val lastDay = calendar.getActualMaximum(Calendar.DATE)
-    return with(day = lastDay, hour = 23, minute = 59, second = 59, millisecond = 999)
-}
+val Date.endOfMonth: Date 
+    get() {
+        calendar.time = this
+        val lastDay = calendar.getActualMaximum(Calendar.DATE)
+        return with(day = lastDay, hour = 23, minute = 59, second = 59, millisecond = 999)
+    }
 
 val Date.beginningOfWeek: Date 
     get() = with(dayOfWeek = calendar.firstDayOfWeek, hour = 0, minute = 0, second = 0, millisecond = 0)
@@ -67,7 +68,7 @@ val Date.beginningOfWeek: Date
 val Date.endOfWeek: Date 
     get() {
         val firstDay = with(dayOfWeek = calendar.firstDayOfWeek, hour = 23, minute = 59, second = 59, millisecond = 999)
-        return firstDay + 7.days
+        return firstDay + 6.days
     }
 val Date.beginningOfDay: Date
     get() = with(hour = 0, minute = 0, second = 0, millisecond = 0)
