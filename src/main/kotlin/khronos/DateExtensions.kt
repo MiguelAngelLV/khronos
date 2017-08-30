@@ -2,6 +2,8 @@ package khronos
 
 import java.text.SimpleDateFormat
 import java.util.*
+import khronos.days
+import khronos.plus
 
 internal val calendar: Calendar by lazy {
     Calendar.getInstance()
@@ -29,8 +31,8 @@ fun Date.with(year: Int = -1, month: Int = -1, day: Int = -1, hour: Int = -1, mi
     if (hour > -1) calendar.set(Calendar.HOUR_OF_DAY, hour)
     if (minute > -1) calendar.set(Calendar.MINUTE, minute)
     if (second > -1) calendar.set(Calendar.SECOND, second)
-    if (dayOfWeek > -1) calendar.set(Calendar.DAY_OF_WEEK, calendar.firstDayOfWeek)
-    if (millisecond > -1 ) calendar.set(Calendar.MILLISECOND, 0)
+    if (dayOfWeek > -1) calendar.set(Calendar.DAY_OF_WEEK, dayOfWeek)
+    if (millisecond > -1 ) calendar.set(Calendar.MILLISECOND, millisecond)
     
     return calendar.time
 }
@@ -66,8 +68,10 @@ val Date.beginningOfWeek: Date
     get() = with(dayOfWeek = calendar.firstDayOfWeek, hour = 0, minute = 0, second = 0, millisecond = 0)
 
 val Date.endOfWeek: Date 
-    get() = with(dayOfWeek = 6, hour = 23, minute = 59, second = 59, millisecond = 999)
-
+    get() {
+        val firstDay = with(dayOfWeek = calendar.firstDayOfWeek, hour = 23, minute = 59, second = 59, millisecond = 999)
+        return firstDay + 7.days
+    }
 val Date.beginningOfDay: Date
     get() = with(hour = 0, minute = 0, second = 0, millisecond = 0)
 
