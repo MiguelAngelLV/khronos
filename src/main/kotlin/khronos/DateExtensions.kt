@@ -64,9 +64,6 @@ fun Date.endOfMonth(): Date {
 val Date.beginningOfWeek: Date 
     get() = with(dayOfWeek = calendar.firstDayOfWeek, hour = 0, minute = 0, second = 0, millisecond = 0)
     
-val Date.beginningOfWeek: Date 
-    get() = with(dayOfWeek = calendar.firstDayOfWeek, hour = 0, minute = 0, second = 0, millisecond = 0)
-
 val Date.endOfWeek: Date 
     get() {
         val firstDay = with(dayOfWeek = calendar.firstDayOfWeek, hour = 23, minute = 59, second = 59, millisecond = 999)
